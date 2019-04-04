@@ -2,3 +2,16 @@
 server:
   tomcat:
     uri-encoding: UTF-8
+
+#将服务注册到注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:9000/eureka/
+  instance:
+    preferIpAddress:  true
+    instance-id:  ${spring.cloud.client.ip-address}:${server.port}
+    statusPageUrlPath:  ${server.context-path:${SERVER_CONTEXTPATH:}}${management.context-path:${MANAGEMENT_CONTEXTPATH:}}${endpoints.info.path:/manager/login/loginIn}
+    healthCheckUrlPath: ${server.context-path:${SERVER_CONTEXTPATH:}}${management.context-path:${MANAGEMENT_CONTEXTPATH:}}${endpoints.health.path:/health}
+    lease-expiration-duration-in-seconds: 10
+    leaseRenewalIntervalInSeconds:  5
