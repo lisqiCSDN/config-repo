@@ -8,17 +8,12 @@ eureka:
   client:
     service-url:
       defaultZone:  http://localhost:9000/eureka/
-#是否优先使用IP地址作为主机名的标识
   instance:
     preferIpAddress:  true
-#将Instance ID设置成IP:端口的形式
-  instance:
     instance-id:  ${spring.cloud.client.ip-address}:${server.port}
     statusPageUrlPath:  ${server.context-path:${SERVER_CONTEXTPATH:}}${management.context-path:${MANAGEMENT_CONTEXTPATH:}}${endpoints.info.path:/manager/login/loginIn}
     healthCheckUrlPath: ${server.context-path:${SERVER_CONTEXTPATH:}}${management.context-path:${MANAGEMENT_CONTEXTPATH:}}${endpoints.health.path:/health}
-#续约更新时间间隔（默认90秒）
     lease-expiration-duration-in-seconds: 10
-#续约到期时间（默认30秒）:到期后自动注销注册（此时在服务端看不到该服务），然后重新注册服务
     leaseRenewalIntervalInSeconds:  5
 
 spring:
